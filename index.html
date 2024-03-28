@@ -1,13 +1,45 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wordle v2</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+  <div id="start-page">
+    <h1>Wordle Remastered</h1>
+    <div id="mode-buttons">
+      <button id="basic-mode">Basic Mode</button>
+      <button id="challenger-mode">Challenger Mode</button>
+    </div>
+  </div>
+
+  <div id="instruction-page">
+    <p>You are only allowed 6 tries</p>
+    <button id="start-button">Start</button>
+  </div>
+
+  <div id="game-page">
+    <div class="row">
+      <div class="row-letter"><input type="text" maxlength="1"></div>
+      <div class="row-letter"><input type="text" maxlength="1"></div>
+      <div class="row-letter"><input type="text" maxlength="1"></div>
+      <div class="row-letter"><input type="text" maxlength="1"></div>
+      <div class="row-letter"><input type="text" maxlength="1"></div>
+      <div class="row-letter"><input type="text" maxlength="1"></div>
+    </div>
+  </div>
+
+  <div id="results-page">
+    <h1>Results</h1>
+    <button id="reset-button">Play Again</button>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
 </html>
