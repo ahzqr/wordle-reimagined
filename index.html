@@ -1,51 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="main.js" defer></script>
+    <title>Vite App</title>
   </head>
   <body>
-    <div id="start-page">
-      <h1>Welcome to the Number Game!</h1>
-      <form id="start-form">
-        <label for="username">Enter your username:</label>
-        <input type="text" id="username" name="username" />
-      </form>
-      <nav>
-        <a href="main.js" id="level1">Level 1</a> |
-        <a href="/css/">Level 2</a> | <a href="/js/">Level 3</a> |
-        <a href="/python/">Level 4</a>
-      </nav>
-      <button id="start-button">Start Game</button>
-    </div>
-
-    <div id="game-page">
-      <h2>Guess The Numbers</h2>
-      <form>
-        <label for="username">Enter Number 1:</label>
-        <input type="text" id="input Num 1" value="1" />
-        <label for="username">Enter Number 2:</label>
-        <input type="text" id="input Num 2" value="4" />
-        <label for="username">Enter Number 3:</label>
-        <input type="text" id="input Num 3" value="3" />
-        <label for="username">Enter Number 4:</label>
-        <input type="text" id="input Num 4" value="2" />
-      </form>
-      <button id="guess-button">Guess!</button>
-      <p id="message"></p>
-    </div>
-
-    <div id="score-page">
-      <h2>High Scores</h2>
-      <h1>"Your Score Appears Here"</h1>
-      <ol>
-        <li>Name 1</li>
-        <li>Name 2</li>
-        <li>Name 3</li>
-      </ol>
-    </div>
+    <div id="app"></div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
