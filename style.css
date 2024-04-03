@@ -1,7 +1,7 @@
 body {
   text-align: center;
 }
-.row {
+#row1 {
   display: flex;
   justify-content: center;
 }

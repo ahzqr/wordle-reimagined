@@ -1,7 +1,6 @@
 let words = ["hellos"];
 const wordsSplit = words[0].split("")
 const inputs = document.querySelectorAll("input[class='row-letter']");
-console.log(inputs);
 
 const startPage = document.getElementById("start-page");
 const instPage = document.getElementById("instruction-page");
@@ -38,24 +37,35 @@ function hideOtherPagesBesideStart() {
 function getAllInputsValues() {
   const result = [];
   for (let i = 0; i < inputs.length; i++) {
-    const element = inputs[i];
-    result.push(element.value);
+    if (inputs[i].value === "") {
+      return;
+    }
+    result.push(inputs[i].value);
   }
-  return result;
+  makeGuess(result);
 }
 
-function makeGuess() {
-  const result = getAllInputsValues();
+for (let i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener("input", getAllInputsValues);
+};
+
+
+function makeGuess(result) {
   if (check(wordsSplit, result) === true) {
-    gotoResults;
+    // gotoResults()
+    console.log("You are right!");
   } else {
-    showWrongMessage();
+    console.log("You are incorrect");
+    // showWrongMessage();
   }
 }
 
 function check(codeArray, valuesArray) {
-  console.log("codeArray", codeArray);
-  console.log("valuesArray", valuesArray);
+  for (let i = 0; i < codeArray.length; i++) {
+    if (codeArray[i] !== valuesArray[i]) {
+      return false; 
+    }
+  }
   return true; //; boolean
 }
 
