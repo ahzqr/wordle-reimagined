@@ -1,36 +1,35 @@
-let words = ["hellos"];
+let words = ["hello"];
 const wordsSplit = words[0].split("")
-let inputs = document.querySelectorAll("input[class='row-letter']");
+const rows = [
+  document.querySelectorAll("#row1 .row-letter"),
+  document.querySelectorAll("#row2 .row-letter"),
+  document.querySelectorAll("#row3 .row-letter"),
+  document.querySelectorAll("#row4 .row-letter"),
+  document.querySelectorAll("#row5 .row-letter"),
+  document.querySelectorAll("#row6 .row-letter")
+];
+let currentIndex = 0;
+let inputs = rows[currentIndex];
 
 const startPage = document.getElementById("start-page");
 const instPage = document.getElementById("instruction-page");
 const gamePage = document.getElementById("game-page");
 const resultsPage = document.getElementById("results-page");
-let rowCount = 1;
 
 const basicMode = document.getElementById("basic-mode");
 const challengerMode = document.getElementById("challenger-mode");
 const startButton = document.getElementById("start-button");
 const resetButton = document.getElementById("reset-button");
 
-function createRow() {
-  const newRow = document.createElement("form");
-  newRow.classList.add("word-row");
-  newRow.id = "row" + (rowCount + 1);
-  for (let i = 0; i < 6; i++) {
-    const newDiv = document.createElement("div");
-    const newInput = document.createElement("input");
-    newInput.classList.add("row-letter");
-    newInput.type = "text";
-    newInput.maxLength = 1;
-    newDiv.appendChild(newInput);
-    newRow.appendChild(newDiv);
+function disableText(row) {
+  for (let i = 0; i < row.length; i++) {
+    row[i].disabled = true;
   }
-  gamePage.appendChild(newRow);
-  rowCount++;
-  let inputs = newRow.querySelectorAll("input[class='row-letter']");
-  for (let i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener("input", getAllInputsValues);
+}
+
+function enableText(row) {
+  for (let i = 0; i < row.length; i++) {
+    row[i].disabled = false;
   }
 }
 
@@ -55,6 +54,11 @@ function hideOtherPagesBesideStart() {
   resultsPage.style.display = "none";
 }
 
+
+for (let i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener("input", getAllInputsValues);
+}
+
 function getAllInputsValues() {
   const result = [];
   for (let i = 0; i < inputs.length; i++) {
@@ -64,10 +68,6 @@ function getAllInputsValues() {
     result.push(inputs[i].value);
   }
   makeGuess(result);
-}
-
-for (let i = 0; i < inputs.length; i++) {
-  inputs[i].addEventListener("input", getAllInputsValues);
 }
 
 function makeGuess(result) {
@@ -90,7 +90,17 @@ function checkGuess(preWords, userInput) {
   if (allCorrect) {
     gotoResults();
   } else {
-    createRow();
+    disableText(inputs)
+    currentIndex++;
+    if (currentIndex < rows.length) {
+      inputs = rows[currentIndex];
+      for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener("input", getAllInputsValues);
+      }
+      enableText(inputs);
+    } else {
+      console.log("You Lose");
+    }
   }
 }
 
@@ -98,6 +108,11 @@ function main() {
   hideOtherPagesBesideStart();
   basicMode.addEventListener("click", gotoInst);
   startButton.addEventListener("click", gotoGame);
+  disableText(rows[1]);
+  disableText(rows[2]);
+  disableText(rows[3]);
+  disableText(rows[4]);
+  disableText(rows[5]);
 }
 
 main();
