@@ -48,7 +48,22 @@ function gotoResults() {
   resultsPage.style.display = "block";
 }
 
+function resetGame() {
+  currentIndex = 0;
+  inputs = rows[currentIndex];
+  for (let x = 0; x < rows.length; x++){
+    for (let i = 0; i < inputs.length; i++) {
+      rows[x][i].value = "";
+      rows[x][i].style.backgroundColor = "";
+      disableText(rows[x]);
+    }
+  }
+  enableText(inputs);
+  hideOtherPagesBesideStart();
+}
+
 function hideOtherPagesBesideStart() {
+  startPage.style.display = "block";
   gamePage.style.display = "none";
   instPage.style.display = "none";
   resultsPage.style.display = "none";
@@ -76,11 +91,17 @@ function makeGuess(result) {
 
 function checkGuess(preWords, userInput) {
   let allCorrect = true;
+  let letterCount = {};
+  for (let i = 0; i < preWords.length; i++) {
+    letterCount[preWords[i]] = (letterCount[preWords[i]] || 0) + 1;
+  }
   for (let i = 0; i < preWords.length; i++) {
     if (preWords[i] === userInput[i]) {
       inputs[i].style.backgroundColor = "green";
-    } else if (preWords.indexOf(userInput[i]) !== -1) {
+      letterCount[userInput[i]]--;
+    } else if (preWords.indexOf(userInput[i]) !== -1 && letterCount[userInput[i]] > 0) {
       inputs[i].style.backgroundColor = "yellow"; 
+      letterCount[userInput[i]]--;
       allCorrect = false;
     } else {
       inputs[i].style.backgroundColor = "grey";
@@ -108,6 +129,7 @@ function main() {
   hideOtherPagesBesideStart();
   basicMode.addEventListener("click", gotoInst);
   startButton.addEventListener("click", gotoGame);
+  resetButton.addEventListener("click", resetGame);
   disableText(rows[1]);
   disableText(rows[2]);
   disableText(rows[3]);
