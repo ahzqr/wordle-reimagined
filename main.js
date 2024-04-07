@@ -187,21 +187,23 @@ function checkGuess(preWord, userInput) {
   let letterCount = {}; // Amount of each letter in the defined word
   for (let i = 0; i < preWord.length; i++) {
     letterCount[preWord[i]] = (letterCount[preWord[i]] || 0) + 1;
-  } console.log(letterCount);
+  }
   for (let i = 0; i < preWord.length; i++) { // Conditionals
     if (preWord[i] === userInput[i]) {
       inputs[i].style.backgroundColor = "green";
       letterCount[userInput[i]]--;
-    } else if (letterCount[userInput[i]] > 0) {
-      inputs[i].style.backgroundColor = "yellow"; 
-      letterCount[userInput[i]]--;
-      allCorrect = false;
     } else {
       inputs[i].style.backgroundColor = "grey";
       allCorrect = false;
     }
   }
-  
+  for (let i = 0; i < preWord.length; i++) {
+    if (letterCount[userInput[i]] > 0) {
+        inputs[i].style.backgroundColor = "yellow"; 
+        letterCount[userInput[i]]--;
+        allCorrect = false;
+    }
+  }
   if (allCorrect) {
     score = currentIndex + 1;
     gotoResults()
