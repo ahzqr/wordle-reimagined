@@ -206,7 +206,7 @@ function checkGuess(preWord, userInput) {
   }
   if (allCorrect) {
     score = currentIndex + 1;
-    gotoResults()
+    setTimeout(gotoResults, 2000);
   } else {
     disableText(inputs)
     currentIndex++;
