@@ -8,11 +8,12 @@
   <title>Wordle v2</title>
   <link rel="stylesheet" type="text/css" href="style.css" />
   <script>
-  function autoTab(field,nextFieldID){
-    if(field.value.length >= field.maxLength){
-      document.getElementById(nextFieldID).focus();
+    //* From https://www.reddit.com/r/javascript/comments/54gasz/have_code_that_auto_tabs_to_next_field_when/
+    function autoTab(field,nextFieldID){
+      if(field.value.length >= field.maxLength){
+        document.getElementById(nextFieldID).focus();
+      }
     }
-  }
   </script>
 </head>
 
@@ -38,48 +39,6 @@
   </div>
 
   <div id="game-page">
-    <form class="word-row" id="row0">
-      <div><input class="row-letter" id="0.0" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'0.1')"></div>
-      <div><input class="row-letter" id="0.1" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'0.2')"></div>
-      <div><input class="row-letter" id="0.2" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'0.3')"></div>
-      <div><input class="row-letter" id="0.3" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'0.4')"></div>
-      <div><input class="row-letter" id="0.4" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'1.0')"></div>
-    </form>
-    <form class="word-row" id="row1">
-      <div><input class="row-letter" id="1.0" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'1.1')"></div>
-      <div><input class="row-letter" id="1.1" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'1.2')"></div>
-      <div><input class="row-letter" id="1.2" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'1.3')"></div>
-      <div><input class="row-letter" id="1.3" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'1.4')"></div>
-      <div><input class="row-letter" id="1.4" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'2.0')"></div>
-    </form>
-    <form class="word-row" id="row2">
-      <div><input class="row-letter" id="2.0" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'2.1')"></div>
-      <div><input class="row-letter" id="2.1" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'2.2')"></div>
-      <div><input class="row-letter" id="2.2" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'2.3')"></div>
-      <div><input class="row-letter" id="2.3" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'2.4')"></div>
-      <div><input class="row-letter" id="2.4" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'3.0')"></div>
-    </form>
-    <form class="word-row" id="row3">
-      <div><input class="row-letter" id="3.0" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'3.1')"></div>
-      <div><input class="row-letter" id="3.1" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'3.2')"></div>
-      <div><input class="row-letter" id="3.2" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'3.3')"></div>
-      <div><input class="row-letter" id="3.3" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'3.4')"></div>
-      <div><input class="row-letter" id="3.4" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'4.0')"></div>
-    </form>
-    <form class="word-row" id="row4">
-      <div><input class="row-letter" id="4.0" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'4.1')"></div>
-      <div><input class="row-letter" id="4.1" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'4.2')"></div>
-      <div><input class="row-letter" id="4.2" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'4.3')"></div>
-      <div><input class="row-letter" id="4.3" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'4.4')"></div>
-      <div><input class="row-letter" id="4.4" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'5.0')"></div>
-    </form>
-    <form class="word-row" id="row5">
-      <div><input class="row-letter" id="5.0" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'5.1')"></div>
-      <div><input class="row-letter" id="5.1" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'5.2')"></div>
-      <div><input class="row-letter" id="5.2" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'5.3')"></div>
-      <div><input class="row-letter" id="5.3" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)" onkeyup="autoTab(this,'5.4')"></div>
-      <div><input class="row-letter" id="5.4" type="text" maxlength="1" onkeydown="return /[a-z]/i.test(event.key)"></div>
-    </form>
     <div id="alertContainer"></div>
   </div>
 
