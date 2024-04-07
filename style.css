@@ -5,6 +5,9 @@ body {
   display: flex;
   justify-content: center;
 }
+#custom-word {
+  width: 500px;
+}
 input[type="text"] {
   height: 50px;
   width: 50px;
