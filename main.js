@@ -190,7 +190,7 @@ function checkGuess(preWord, userInput) {
   }
   for (let i = 0; i < preWord.length; i++) { // Conditionals
     if (preWord[i] === userInput[i]) {
-      inputs[i].style.backgroundColor = "green";
+      inputs[i].style.backgroundColor = "#93c47d";
       letterCount[userInput[i]]--;
     } else {
       inputs[i].style.backgroundColor = "grey";
@@ -199,7 +199,7 @@ function checkGuess(preWord, userInput) {
   }
   for (let i = 0; i < preWord.length; i++) {
     if (letterCount[userInput[i]] > 0) {
-        inputs[i].style.backgroundColor = "yellow"; 
+        inputs[i].style.backgroundColor = "#ffd966"; 
         letterCount[userInput[i]]--;
         allCorrect = false;
     }
