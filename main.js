@@ -6,7 +6,7 @@ let currentIndex = 0;
 let inputs = rows[currentIndex]; //* To move through the rows for each guess
 let score = 0;
 
-// DOM elements
+// DOM Elements
 const startPage = document.getElementById("start-page");
 const challengerPage = document.getElementById("challenger-page");
 const instPage = document.getElementById("instruction-page");
