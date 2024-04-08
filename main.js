@@ -2,10 +2,10 @@
 let words = [];
 let randomWords = [];
 let rows = [];
-let currentIndex = 0;
-let inputs = []; //* To move through the rows for each guess
-let score = 0;
+let inputs = [];
 let box = [];
+let currentIndex = 0;
+let score = 0;
 
 // DOM Elements
 const startPage = document.getElementById("start-page");
@@ -21,7 +21,7 @@ const resetButton = document.getElementById("reset-button");
 const finalScore = document.createElement("p");
 const alertContainer = document.getElementById("alertContainer");
 
-// Utility functions
+// Utility Functions
 
 function hideOtherPagesBesideStart() {
   startPage.style.display = "block";
@@ -48,7 +48,7 @@ function gotoInst() {
   customPage.style.display = "none";
   instPage.style.display = "block";
   words = ["hello", "gamer", "super", "drink", "tired"];
-  randomWords = words[(Math.floor(Math.random() * words.length))].split("");
+  randomWords = words[Math.floor(Math.random() * words.length)].split("");
   console.log(randomWords);
   rows = createBoard();
   inputs = rows[currentIndex]; //* To move through the rows for each guess
@@ -58,7 +58,7 @@ function gotoInst() {
     document.getElementById("2.0"),
     document.getElementById("3.0"),
     document.getElementById("4.0"),
-    document.getElementById("5.0")
+    document.getElementById("5.0"),
   ];
 }
 
@@ -80,7 +80,7 @@ function gotoInstChallenge() {
     document.getElementById("2.0"),
     document.getElementById("3.0"),
     document.getElementById("4.0"),
-    document.getElementById("5.0")
+    document.getElementById("5.0"),
   ];
 }
 
@@ -99,16 +99,16 @@ function gotoGame() {
 function gotoResults() {
   gamePage.style.display = "none";
   resultsPage.style.display = "block";
-  finalScore.innerText = "You guessed in " + score + " tries!"
+  finalScore.innerText = "You guessed in " + score + " tries!";
   resultsPage.insertBefore(finalScore, resetButton);
 }
 
 function guessAgain() {
   currentIndex = 0;
   inputs = rows[currentIndex];
-  randomWords = words[(Math.floor(Math.random() * words.length))].split("");
+  randomWords = words[Math.floor(Math.random() * words.length)].split("");
   document.getElementById("popup").remove();
-  for (let x = 0; x < rows.length; x++){
+  for (let x = 0; x < rows.length; x++) {
     for (let i = 0; i < inputs.length; i++) {
       rows[x][i].value = "";
       rows[x][i].style.backgroundColor = "";
@@ -142,7 +142,7 @@ function newGame() {
   inputs = rows[currentIndex];
   finalScore.remove();
   score = currentIndex;
-  for (let x = 0; x < rows.length; x++){
+  for (let x = 0; x < rows.length; x++) {
     for (let i = 0; i < inputs.length; i++) {
       rows[x][i].value = "";
       rows[x][i].style.backgroundColor = "";
@@ -156,7 +156,8 @@ function newGame() {
   hideOtherPagesBesideStart();
 }
 
-function updateWord() { //* Custom Mode
+function updateWord() {
+  //* Custom Mode
   let newWord = document.getElementById("custom-word").value;
   randomWords = newWord.split("");
 }
@@ -180,25 +181,30 @@ function createBoard() {
   const gamePage = document.getElementById("game-page");
   let rowsArray = [];
   for (let formIndex = 0; formIndex < 6; formIndex++) {
-      const form = document.createElement("form");
-      form.classList.add("word-row");
-      form.id = "row" + formIndex;
-      let rowInputs = [];
-      for (let boxIndex = 0; boxIndex < randomWords.length; boxIndex++) {
-          const div = document.createElement("div");
-          const input = document.createElement("input");
-          input.classList.add("row-letter");
-          input.id = `${formIndex}.${boxIndex}`;
-          input.type = "text";
-          input.maxLength = 1;
-          input.setAttribute("onkeydown", "return /[a-z]/i.test(event.key)");
-          input.setAttribute("onkeyup", `autoTab(this, "${formIndex}.${boxIndex < randomWords.length - 1 ? boxIndex + 1 : (formIndex + 1)}")`);
-          div.appendChild(input);
-          form.appendChild(div);
-          rowInputs.push(input);
-      }
-      rowsArray.push(rowInputs);
-      gamePage.appendChild(form);
+    const form = document.createElement("form");
+    form.classList.add("word-row");
+    form.id = "row" + formIndex;
+    let rowInputs = [];
+    for (let boxIndex = 0; boxIndex < randomWords.length; boxIndex++) {
+      const div = document.createElement("div");
+      const input = document.createElement("input");
+      input.classList.add("row-letter");
+      input.id = `${formIndex}.${boxIndex}`;
+      input.type = "text";
+      input.maxLength = 1;
+      input.setAttribute("onkeydown", "return /[a-z]/i.test(event.key)");
+      input.setAttribute(
+        "onkeyup",
+        `autoTab(this, "${formIndex}.${
+          boxIndex < randomWords.length - 1 ? boxIndex + 1 : formIndex + 1
+        }")`
+      );
+      div.appendChild(input);
+      form.appendChild(div);
+      rowInputs.push(input);
+    }
+    rowsArray.push(rowInputs);
+    gamePage.appendChild(form);
   }
   return rowsArray;
 }
@@ -206,11 +212,11 @@ function createBoard() {
 // Event listeners
 function guess() {
   for (let i = 0; i < inputs.length; i++) {
-  inputs[i].addEventListener("input", checkUserInput);
-  } 
+    inputs[i].addEventListener("input", checkUserInput);
+  }
 }
 
-function checkUserInput() { 
+function checkUserInput() {
   const result = [];
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].value === "") {
@@ -227,7 +233,8 @@ function crossCheck(preWord, userInput) {
   for (let i = 0; i < preWord.length; i++) {
     letterCount[preWord[i]] = (letterCount[preWord[i]] || 0) + 1;
   }
-  for (let i = 0; i < preWord.length; i++) { // Conditionals
+  for (let i = 0; i < preWord.length; i++) {
+    // Conditionals
     if (preWord[i] === userInput[i]) {
       inputs[i].style.backgroundColor = "#93c47d"; //* Green
       letterCount[userInput[i]]--;
@@ -238,16 +245,16 @@ function crossCheck(preWord, userInput) {
   }
   for (let i = 0; i < preWord.length; i++) {
     if (letterCount[userInput[i]] > 0) {
-        inputs[i].style.backgroundColor = "#ffd966"; //* Yellow
-        letterCount[userInput[i]]--;
-        allCorrect = false;
+      inputs[i].style.backgroundColor = "#ffd966"; //* Yellow
+      letterCount[userInput[i]]--;
+      allCorrect = false;
     }
   }
   if (allCorrect) {
     score = currentIndex + 1;
     setTimeout(gotoResults, 2000);
   } else {
-    disableText(inputs)
+    disableText(inputs);
     currentIndex++;
     if (currentIndex < rows.length) {
       inputs = rows[currentIndex];
@@ -257,7 +264,11 @@ function crossCheck(preWord, userInput) {
       enableText(inputs);
       box[currentIndex].focus();
     } else {
-      showAlert("Oops! The answer is " + randomWords.join("") + ". Click here to try again!");
+      showAlert(
+        "Oops! The answer is " +
+          randomWords.join("") +
+          ". Click here to try again!"
+      );
     }
   }
 }

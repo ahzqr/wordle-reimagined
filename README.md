@@ -107,9 +107,9 @@ To avoid repeating codes, functions are essential to coding.
 
 ## Future Developments / Improvements
 
-- Make the game more user-friendly and more appealing. 
-- Using more efficient codes.
+- Create an on-screen keyboard.
 - Add in a speed run mode: Guessing multiple words within a time limit.
+- Add different difficulties i.e Reduce number of attempts, add timer etc.
 
 <br>
 
