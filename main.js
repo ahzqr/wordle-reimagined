@@ -9,13 +9,13 @@ let box = [];
 
 // DOM Elements
 const startPage = document.getElementById("start-page");
-const challengerPage = document.getElementById("challenger-page");
+const customPage = document.getElementById("custom-page");
 const instPage = document.getElementById("instruction-page");
 const gamePage = document.getElementById("game-page");
 const resultsPage = document.getElementById("results-page");
 const basicMode = document.getElementById("basic-mode");
-const challengerMode = document.getElementById("challenger-mode");
-const challengeButton = document.getElementById("challenge-button");
+const customMode = document.getElementById("custom-mode");
+const customButton = document.getElementById("custom-button");
 const startButton = document.getElementById("start-button");
 const resetButton = document.getElementById("reset-button");
 const finalScore = document.createElement("p");
@@ -26,7 +26,7 @@ const alertContainer = document.getElementById("alertContainer");
 function hideOtherPagesBesideStart() {
   startPage.style.display = "block";
   gamePage.style.display = "none";
-  challengerPage.style.display = "none";
+  customPage.style.display = "none";
   instPage.style.display = "none";
   resultsPage.style.display = "none";
 }
@@ -45,7 +45,7 @@ function enableText(row) {
 
 function gotoInst() {
   startPage.style.display = "none";
-  challengerPage.style.display = "none";
+  customPage.style.display = "none";
   instPage.style.display = "block";
   words = ["hello", "gamer", "super", "drink", "tired"];
   randomWords = words[(Math.floor(Math.random() * words.length))].split("");
@@ -64,11 +64,11 @@ function gotoInst() {
 
 function gotoChallenge() {
   startPage.style.display = "none";
-  challengerPage.style.display = "block";
+  customPage.style.display = "block";
 }
 
 function gotoInstChallenge() {
-  challengerPage.style.display = "none";
+  customPage.style.display = "none";
   instPage.style.display = "block";
   updateWord();
   console.log(randomWords);
@@ -156,7 +156,7 @@ function newGame() {
   hideOtherPagesBesideStart();
 }
 
-function updateWord() { //* Challenger Mode
+function updateWord() { //* Custom Mode
   let newWord = document.getElementById("custom-word").value;
   randomWords = newWord.split("");
 }
@@ -266,8 +266,8 @@ function crossCheck(preWord, userInput) {
 function mainFlow() {
   hideOtherPagesBesideStart();
   basicMode.addEventListener("click", gotoInst);
-  challengerMode.addEventListener("click", gotoChallenge);
-  challengeButton.addEventListener("click", gotoInstChallenge);
+  customMode.addEventListener("click", gotoChallenge);
+  customButton.addEventListener("click", gotoInstChallenge);
   startButton.addEventListener("click", gotoGame);
   resetButton.addEventListener("click", newGame);
 }
