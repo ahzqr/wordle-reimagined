@@ -38,7 +38,7 @@ A simple yet addictive word game. Players have a total of six attempts to guess 
 <br>
 
 ## Deployment
-The game is deployed on GitHub pages, and you can play the game here: https://chrysaliswoon.github.io/CatrisProject/
+The game is deployed on Vercel pages, and you can play the game here: https://wordleremake.vercel.app/
 
 <br>
 
