@@ -1,11 +1,11 @@
 // Global variables
-let words = ["hello", "gamer", "super", "drink", "tired"];
-let randomWords = words[(Math.floor(Math.random() * words.length))].split("");
-console.log(randomWords);
-let rows = createBoard();
+let words = [];
+let randomWords = [];
+let rows = [];
 let currentIndex = 0;
-let inputs = rows[currentIndex]; //* To move through the rows for each guess
+let inputs = []; //* To move through the rows for each guess
 let score = 0;
+let box = [];
 
 // DOM Elements
 const startPage = document.getElementById("start-page");
@@ -20,14 +20,6 @@ const startButton = document.getElementById("start-button");
 const resetButton = document.getElementById("reset-button");
 const finalScore = document.createElement("p");
 const alertContainer = document.getElementById("alertContainer");
-const box = [
-  document.getElementById("0.0"),
-  document.getElementById("1.0"),
-  document.getElementById("2.0"),
-  document.getElementById("3.0"),
-  document.getElementById("4.0"),
-  document.getElementById("5.0")
-];
 
 // Utility functions
 
@@ -55,6 +47,19 @@ function gotoInst() {
   startPage.style.display = "none";
   challengerPage.style.display = "none";
   instPage.style.display = "block";
+  words = ["hello", "gamer", "super", "drink", "tired"];
+  randomWords = words[(Math.floor(Math.random() * words.length))].split("");
+  console.log(randomWords);
+  rows = createBoard();
+  inputs = rows[currentIndex]; //* To move through the rows for each guess
+  box = [
+    document.getElementById("0.0"),
+    document.getElementById("1.0"),
+    document.getElementById("2.0"),
+    document.getElementById("3.0"),
+    document.getElementById("4.0"),
+    document.getElementById("5.0")
+  ];
 }
 
 function gotoChallenge() {
@@ -66,12 +71,29 @@ function gotoInstChallenge() {
   challengerPage.style.display = "none";
   instPage.style.display = "block";
   updateWord();
+  console.log(randomWords);
+  rows = createBoard();
+  inputs = rows[currentIndex]; //* To move through the rows for each guess
+  box = [
+    document.getElementById("0.0"),
+    document.getElementById("1.0"),
+    document.getElementById("2.0"),
+    document.getElementById("3.0"),
+    document.getElementById("4.0"),
+    document.getElementById("5.0")
+  ];
 }
 
 function gotoGame() {
   instPage.style.display = "none";
   gamePage.style.display = "block";
+  guess();
   box[0].focus();
+  disableText(rows[1]);
+  disableText(rows[2]);
+  disableText(rows[3]);
+  disableText(rows[4]);
+  disableText(rows[5]);
 }
 
 function gotoResults() {
@@ -94,6 +116,7 @@ function guessAgain() {
     }
   }
   enableText(inputs);
+  removeBoard();
   hideOtherPagesBesideStart();
 }
 
@@ -119,7 +142,6 @@ function newGame() {
   inputs = rows[currentIndex];
   finalScore.remove();
   score = currentIndex;
-  randomWords = words[(Math.floor(Math.random() * words.length))].split("");
   for (let x = 0; x < rows.length; x++){
     for (let i = 0; i < inputs.length; i++) {
       rows[x][i].value = "";
@@ -127,13 +149,31 @@ function newGame() {
       disableText(rows[x]);
     }
   }
+  const inputField = document.getElementById("custom-word");
+  inputField.value = "";
+  removeBoard();
   enableText(inputs);
   hideOtherPagesBesideStart();
 }
 
-function updateWord() { //* Challenger Mode not completed
+function updateWord() { //* Challenger Mode
   let newWord = document.getElementById("custom-word").value;
-  words = newWord;
+  randomWords = newWord.split("");
+}
+
+function removeBoard() {
+  const form0 = document.getElementById("row0");
+  const form1 = document.getElementById("row1");
+  const form2 = document.getElementById("row2");
+  const form3 = document.getElementById("row3");
+  const form4 = document.getElementById("row4");
+  const form5 = document.getElementById("row5");
+  form0.remove();
+  form1.remove();
+  form2.remove();
+  form3.remove();
+  form4.remove();
+  form5.remove();
 }
 
 function createBoard() {
@@ -164,8 +204,10 @@ function createBoard() {
 }
 
 // Event listeners
-for (let i = 0; i < inputs.length; i++) {
+function guess() {
+  for (let i = 0; i < inputs.length; i++) {
   inputs[i].addEventListener("input", checkUserInput);
+  } 
 }
 
 function checkUserInput() { 
@@ -221,18 +263,13 @@ function crossCheck(preWord, userInput) {
 }
 
 // Main function
-function main() {
+function mainFlow() {
   hideOtherPagesBesideStart();
   basicMode.addEventListener("click", gotoInst);
   challengerMode.addEventListener("click", gotoChallenge);
   challengeButton.addEventListener("click", gotoInstChallenge);
   startButton.addEventListener("click", gotoGame);
   resetButton.addEventListener("click", newGame);
-  disableText(rows[1]);
-  disableText(rows[2]);
-  disableText(rows[3]);
-  disableText(rows[4]);
-  disableText(rows[5]);
 }
 
-main();
+mainFlow();
