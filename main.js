@@ -62,12 +62,12 @@ function gotoInst() {
   ];
 }
 
-function gotoChallenge() {
+function gotoCustom() {
   startPage.style.display = "none";
   customPage.style.display = "block";
 }
 
-function gotoInstChallenge() {
+function gotoInstCustom() {
   customPage.style.display = "none";
   instPage.style.display = "block";
   updateWord();
@@ -234,7 +234,6 @@ function crossCheck(preWord, userInput) {
     letterCount[preWord[i]] = (letterCount[preWord[i]] || 0) + 1;
   }
   for (let i = 0; i < preWord.length; i++) {
-    // Conditionals
     if (preWord[i] === userInput[i]) {
       inputs[i].style.backgroundColor = "#93c47d"; //* Green
       letterCount[userInput[i]]--;
@@ -277,8 +276,8 @@ function crossCheck(preWord, userInput) {
 function mainFlow() {
   hideOtherPagesBesideStart();
   basicMode.addEventListener("click", gotoInst);
-  customMode.addEventListener("click", gotoChallenge);
-  customButton.addEventListener("click", gotoInstChallenge);
+  customMode.addEventListener("click", gotoCustom);
+  customButton.addEventListener("click", gotoInstCustom);
   startButton.addEventListener("click", gotoGame);
   resetButton.addEventListener("click", newGame);
 }
