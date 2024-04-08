@@ -2,7 +2,7 @@
 let words = ["hello", "gamer", "super", "drink", "tired"];
 let randomWords = words[(Math.floor(Math.random() * words.length))].split("");
 console.log(randomWords);
-let rows = createGame();
+let rows = createBoard();
 let currentIndex = 0;
 let inputs = rows[currentIndex]; //* To move through the rows for each guess
 let score = 0;
@@ -131,12 +131,12 @@ function newGame() {
   hideOtherPagesBesideStart();
 }
 
-function updateWord() {
+function updateWord() { //* Challenger Mode not completed
   let newWord = document.getElementById("custom-word").value;
   words = newWord;
 }
 
-function createGame() {
+function createBoard() {
   const gamePage = document.getElementById("game-page");
   let rowsArray = [];
   for (let formIndex = 0; formIndex < 6; formIndex++) {
@@ -165,10 +165,10 @@ function createGame() {
 
 // Event listeners
 for (let i = 0; i < inputs.length; i++) {
-  inputs[i].addEventListener("input", getAllInputsValues);
+  inputs[i].addEventListener("input", checkUserInput);
 }
 
-function getAllInputsValues() {
+function checkUserInput() { 
   const result = [];
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].value === "") {
@@ -176,14 +176,10 @@ function getAllInputsValues() {
     }
     result.push(inputs[i].value);
   }
-  makeGuess(result);
+  crossCheck(randomWords, result);
 }
 
-function makeGuess(result) {
-  checkGuess(randomWords, result);
-}
-
-function checkGuess(preWord, userInput) {
+function crossCheck(preWord, userInput) {
   let allCorrect = true;
   let letterCount = {}; // Amount of each letter in the defined word
   for (let i = 0; i < preWord.length; i++) {
@@ -191,7 +187,7 @@ function checkGuess(preWord, userInput) {
   }
   for (let i = 0; i < preWord.length; i++) { // Conditionals
     if (preWord[i] === userInput[i]) {
-      inputs[i].style.backgroundColor = "#93c47d";
+      inputs[i].style.backgroundColor = "#93c47d"; //* Green
       letterCount[userInput[i]]--;
     } else {
       inputs[i].style.backgroundColor = "grey";
@@ -200,7 +196,7 @@ function checkGuess(preWord, userInput) {
   }
   for (let i = 0; i < preWord.length; i++) {
     if (letterCount[userInput[i]] > 0) {
-        inputs[i].style.backgroundColor = "#ffd966"; 
+        inputs[i].style.backgroundColor = "#ffd966"; //* Yellow
         letterCount[userInput[i]]--;
         allCorrect = false;
     }
@@ -214,7 +210,7 @@ function checkGuess(preWord, userInput) {
     if (currentIndex < rows.length) {
       inputs = rows[currentIndex];
       for (let i = 0; i < inputs.length; i++) {
-        inputs[i].addEventListener("input", getAllInputsValues);
+        inputs[i].addEventListener("input", checkUserInput);
       }
       enableText(inputs);
       box[currentIndex].focus();
