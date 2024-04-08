@@ -1,6 +1,7 @@
 // Global variables
 let words = ["hello", "gamer", "super", "drink", "tired"];
 let randomWords = words[(Math.floor(Math.random() * words.length))].split("");
+console.log(randomWords);
 let rows = createGame();
 let currentIndex = 0;
 let inputs = rows[currentIndex]; //* To move through the rows for each guess
