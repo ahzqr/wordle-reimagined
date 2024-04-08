@@ -12,7 +12,7 @@
 
 **Stretch Goals (Not Mandatory)**
 - Vary the amount of letters
-- Complete the Challenger Mode
+- Complete the Custom Mode
 
 ## Timeframe
 2 weeks
@@ -62,7 +62,7 @@ Using the plan and pseudocodes, I broke down the project into stages:
 - [x] **Step 1:** Generate the Guessing Board
 - [x] **Step 2:** Create the Game Logic
 - [x] **Step 3:** Create the Scoring
-- [ ] **Step 4** (Stretch Goal): Diversify the Words' Length
+- [x] **Step 4** (Stretch Goal): Diversify the Words' Length
 
 When I was coding out the project, I made a lot of changes to the logic and to how I approach the game. Whilst I tried to make the code clean, it became a lot messier along the way. However, I did learnt alot in the process.
 
@@ -109,6 +109,7 @@ To avoid repeating codes, functions are essential to coding.
 
 - Make the game more user-friendly and more appealing. 
 - Using more efficient codes.
+- Add in a speed run mode: Guessing multiple words within a time limit.
 
 <br>
 
